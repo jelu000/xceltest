@@ -47,3 +47,28 @@ document.getElementById("demo").onchange = evt => {
         });
     }).catch(error => console.log(error));
 }*/
+//----------------------------------------------------------------------------------------------
+Login example: 
+
+   <h1>Login</h1>
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="button" value="Login" onclick="login()">
+    </form>
+    <p id="message"></p>
+
+function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if (username == "admin" && password == "password") {
+        document.getElementById("message").innerHTML = "Login successful!";
+        window.open("https://www.example.com");
+
+
+    } else {
+        document.getElementById("message").innerHTML = "Invalid username or password.";
+    }
+}

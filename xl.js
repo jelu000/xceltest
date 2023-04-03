@@ -1,7 +1,8 @@
+//XLS TEST
+
 getXls();
 
-
-
+let global_json_data  = []
 
 function getXls() {
 
@@ -30,6 +31,8 @@ function getXls() {
 
             // Do something with the JSON data
             console.log(jsonData);
+
+            global_json_data = jsonData;
             console.log(`produkt 1= ${jsonData[0]["produkt"]}`)
             listProd(jsonData)
         })
@@ -37,8 +40,6 @@ function getXls() {
 }
 
 function listProd(produkter){
-  
-    //console.log(`längd= ${vald_dag_bokningar.length}`)
 
     let tr_string = "";
     
@@ -47,6 +48,22 @@ function listProd(produkter){
     });
 
     document.getElementById("produkter").innerHTML=tr_string;
+}
+
+function findButtClick(){
+    let textinput = document.getElementById("input_text").value //Text input för sökning
+    p_element_svar = document.getElementById("svar_text") //p tagg där svaret på sökning ska skrivas ut
+    
+    //console.log(`text ${typeof(global_json_data[1]["produkt"])}`)
+
+    //Felhantering om inte sökt objekt finns
+    try{
+        hittat_obj = global_json_data.find((ob) => ob.produkt === textinput);//Söker i arrayen
+        p_element_svar.innerHTML = `Sökt produkt: ${hittat_obj.produkt}, Pris: ${hittat_obj.pris}`//skriver svar i p tagg
+        //console.log(`sök svar= ${hittat_obj.pris}`)
+    }catch(e){
+        p_element_svar.innerHTML = `Något gick fel, förmodligen hittade ej objektet!`
+    }
 }
 
 
